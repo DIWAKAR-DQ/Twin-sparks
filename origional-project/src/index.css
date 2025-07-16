@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Primary brand colors - warm and earthy for rural appeal */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 142 76% 45%;
+    --primary-soft: 142 40% 88%;
+    
+    /* Secondary colors - warm orange/amber */
+    --secondary: 35 100% 55%;
+    --secondary-foreground: 0 0% 98%;
+    --secondary-soft: 35 100% 92%;
+    
+    /* Background and surfaces */
+    --background: 47 100% 97%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    
+    /* UI Elements */
+    --muted: 142 20% 95%;
+    --muted-foreground: 142 10% 45%;
+    --accent: 35 100% 90%;
+    --accent-foreground: 20 14.3% 4.1%;
+    --border: 142 30% 90%;
+    --input: 0 0% 100%;
+    --ring: 142 76% 36%;
+    
+    /* Status colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 35 100% 55%;
+    --warning-foreground: 0 0% 98%;
+    
+    /* Design elements */
+    --radius: 12px;
+    --shadow-soft: 0 4px 6px -1px hsl(142 76% 36% / 0.1);
+    --shadow-medium: 0 10px 15px -3px hsl(142 76% 36% / 0.1);
+    --shadow-large: 0 20px 25px -5px hsl(142 76% 36% / 0.1);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 45%));
+    --gradient-secondary: linear-gradient(135deg, hsl(35 100% 55%), hsl(35 100% 65%));
+    --gradient-soft: linear-gradient(135deg, hsl(142 40% 88%), hsl(35 100% 92%));
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --primary: 142 76% 45%;
+    --primary-foreground: 20 14.3% 4.1%;
+    --primary-glow: 142 76% 55%;
+    --primary-soft: 142 40% 15%;
+    
+    --secondary: 35 100% 65%;
+    --secondary-foreground: 20 14.3% 4.1%;
+    --secondary-soft: 35 100% 15%;
+    
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 98%;
+    --card: 20 14.3% 8%;
+    --card-foreground: 0 0% 98%;
+    
+    --muted: 20 14.3% 12%;
+    --muted-foreground: 142 10% 70%;
+    --accent: 35 100% 15%;
+    --accent-foreground: 0 0% 98%;
+    --border: 20 14.3% 15%;
+    --input: 20 14.3% 12%;
+    --ring: 142 76% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Custom button variants */
+  .btn-hero {
+    @apply bg-gradient-to-r from-primary to-primary-glow text-primary-foreground;
+    @apply px-8 py-4 rounded-2xl font-semibold text-lg;
+    @apply shadow-lg hover:shadow-xl transform hover:scale-105;
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .btn-secondary-hero {
+    @apply bg-gradient-to-r from-secondary to-[hsl(35_100%_65%)] text-secondary-foreground;
+    @apply px-6 py-3 rounded-xl font-medium;
+    @apply shadow-md hover:shadow-lg transform hover:scale-105;
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  /* Card variants */
+  .card-elevated {
+    @apply bg-card rounded-2xl p-6 shadow-lg hover:shadow-xl;
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .card-interactive {
+    @apply card-elevated hover:scale-[1.02] cursor-pointer;
+    @apply border border-border hover:border-primary/20;
+  }
+  
+  /* Icon buttons */
+  .icon-btn-large {
+    @apply w-16 h-16 rounded-full bg-gradient-to-r from-primary to-primary-glow;
+    @apply flex items-center justify-center text-primary-foreground;
+    @apply shadow-lg hover:shadow-xl transform hover:scale-110;
+    @apply transition-all duration-300 ease-out cursor-pointer;
+  }
+  
+  /* Utility classes */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent;
+  }
+  
+  .pulse-gentle {
+    animation: pulse-gentle 2s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  @keyframes pulse-gentle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+}
